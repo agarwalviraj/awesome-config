@@ -11,8 +11,9 @@ local table = awful.util.table or gears.table
 
 local separator = wibox.container.margin(wibox.widget {
     orientation = 'vertical',
-    forced_width = dpi(1),
-    opacity = 0.3,
+    forced_width = dpi(7),
+    forced_heigth=dpi(40),
+    opacity = 0.8,
     widget = wibox.widget.separator
 }, dpi(0), dpi(0), dpi(4), dpi(4))
 
@@ -39,8 +40,11 @@ local TopBar = function(s, offset)
 
     -- SYSTEM TRAY
     -- ===========
-    local systray = wibox.widget.systray()
+    local systray = wibox.widget.systray(wibox.widget)
     systray:set_horizontal(true)
+    systray:set_base_size(dpi(25))
+    wibox.widget.systray:set_reverse (true)
+    
 
     -- SYSTEM DETAILS
     -- ==============
@@ -48,6 +52,7 @@ local TopBar = function(s, offset)
     local battery_widget = require('widget.battery')
     local clock_widget = require('widget.clock')
     local mem_widget = require('widget.memory')
+    local fan_widget = require('widget.fan')
     local cpu_widget = require('widget.cpu')
     local temprature_widget = require('widget.temprature')
     local storage_widget = require('widget.storage')
@@ -64,9 +69,19 @@ local TopBar = function(s, offset)
                 },
                 fg = beautiful.accent.hue_600,
                 widget = wibox.container.background
-            },
-           
+            }, 
             mem_widget,
+            separator,
+            wibox.widget{
+                wibox.widget{
+                    text = ' ',
+                    font = beautiful.icon_font,
+                    widget = wibox.widget.textbox
+                },
+                fg = beautiful.accent.hue_200,
+                widget = wibox.container.background
+            },   
+            fan_widget,
             separator,
             wibox.widget{
                 wibox.widget{
@@ -101,16 +116,7 @@ local TopBar = function(s, offset)
             },
             storage_widget,
             separator,
-            wibox.widget{
-                wibox.widget{
-                    text = 'vol ',
-                    font = beautiful.icon_font,
-                    widget = wibox.widget.textbox
-                },
-                fg = beautiful.accent.hue_600,
-                widget = wibox.container.background
-            },
-             volume_widget,
+            volume_widget,
             separator,
             wibox.widget{
                 wibox.widget{

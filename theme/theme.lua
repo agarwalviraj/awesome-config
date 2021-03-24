@@ -6,15 +6,15 @@ local dpi = require('beautiful').xresources.apply_dpi
 local theme = {}
 
 -- Color Scheme
-theme.primary = color_schemes.gruvbox_material.primary
-theme.accent = color_schemes.gruvbox_material.accent
+theme.primary = color_schemes.dracula.primary
+theme.accent = color_schemes.dracula.accent
 
 local awesome_overrides = function(theme)
     theme.dir = os.getenv('HOME') .. '/.config/awesome/theme'
 
     theme.icons = theme.dir .. '/icons/'
     theme.font = 'SauceCodePro Nerd Font 17'         -- Glyphs don't work properly with this (#442)
-    theme.widget_font = 'Robotomono nerd font bold 12'         -- Glyphs don't work properly with this (#442)
+    theme.widget_font = 'HelveticaNeueCyr 12'         -- Glyphs don't work properly with this (#442)
     theme.icon_font = 'DejaVuSansMono Nerd Font 13'          -- Fira mono patched version
 
     -- Layout icons
@@ -48,11 +48,11 @@ local awesome_overrides = function(theme)
     theme.icon_theme = 'Papirus'
 
     -- Client
-    theme.gaps = dpi(2)
-    theme.border_width = dpi(2)
-    theme.border_focus = theme.accent.hue_200
+    theme.gaps = dpi(7)
+    theme.border_width = dpi(1)
+    theme.border_focus = theme.accent.hue_600
     theme.border_normal = theme.primary.hue_100
-    theme.gap_single_client = false
+    theme.gap_single_client = true
     theme.bg_normal = theme.primary.hue_100
 end
 return {theme = theme, awesome_overrides = awesome_overrides}

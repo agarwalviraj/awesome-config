@@ -7,10 +7,11 @@ local beautiful = require('beautiful')
 
 local volume_icon = wibox.widget.textbox()
 volume_icon.font = beautiful.icon_font
+volume_icon.valign = 'center'
 local volume_widget = wibox.widget.textbox()
 volume_widget.align = 'center'
 volume_widget.valign = 'center'
-volume_widget.font = beautiful.icon_font
+volume_widget.font = beautiful.widget_font
 
 local volume
 
