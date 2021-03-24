@@ -65,6 +65,7 @@ local TopBar = function(s, offset)
                 fg = beautiful.accent.hue_600,
                 widget = wibox.container.background
             },
+           
             mem_widget,
             separator,
             wibox.widget{
@@ -91,7 +92,7 @@ local TopBar = function(s, offset)
             separator,
             wibox.widget{
                 wibox.widget{
-                    text = ' ',
+                    text = '󰨣 ',
                     font = beautiful.icon_font,
                     widget = wibox.widget.textbox
                 },
@@ -106,10 +107,10 @@ local TopBar = function(s, offset)
                     font = beautiful.icon_font,
                     widget = wibox.widget.textbox
                 },
-                fg = beautiful.accent.hue_200,
+                fg = beautiful.accent.hue_600,
                 widget = wibox.container.background
             },
-            volume_widget,
+             volume_widget,
             separator,
             wibox.widget{
                 wibox.widget{

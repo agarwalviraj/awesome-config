@@ -10,40 +10,42 @@ volume_icon.font = beautiful.icon_font
 local volume_widget = wibox.widget.textbox()
 volume_widget.align = 'center'
 volume_widget.valign = 'center'
-volume_widget.font = beautiful.widget_font
+volume_widget.font = beautiful.icon_font
 
 local volume
 
-function update_volume()
-    awful.spawn.easy_async_with_shell("bash -c 'pactl list sinks | awk \'$1==\"Volume:\" {print $5} \''", function(stdout)
-        volume= string.match(stdout, '(%d?%d?%d)%%')
-        -- volume_widget.text=stdout,
-        awful.spawn.easy_async_with_shell("bash -c 'pactl list sinks | awk \'/Mute/ {print $2}\''", function(muted)
-            muted = string.gsub(muted, "%s+", "")
-            if muted == 'muted:no' and (volume > '50' or volume == '100') then
-                volume_icon.text = '墳'
-            elseif muted == 'muted:no' and volume <= '50' and volume > '0' then
-                volume_icon.text = '奔'
-            elseif muted == 'muted:yes' then
-                volume_icon.text = '婢'
-            elseif volume == '0' then
-                volume_icon.text = '奄'
+function update_vol()
+    awful.spawn.easy_async_with_shell("bash -c '$HOME/.config/awesome/scripts/getVol.sh'", function(stdout)
+        volume=stdout
+        awful.spawn.easy_async_with_shell("bash -c '$HOME/.config/awesome/scripts/getMute.sh'", function(muted)
+            if string.sub(muted,0,1)=='y' then muted = true
+            else muted= false
             end
-            volume_widget.text = volume
+            if not muted and (volume > '50' or volume == '100') then
+                volume_icon.text = '墳 '
+            elseif not muted and volume <= '50' and volume > '0' then
+                volume_icon.text = '奔 '
+            elseif muted then
+                volume_icon.text = '婢 '
+            elseif volume == '0' then
+                volume_icon.text = '奄 '
+            end
+            volume_widget.text = tostring(volume)
         end)
         collectgarbage('collect')
     end)
+    
 end
 
-watch('bash -c', 3, function(_, stdout)
-    update_volume()
+watch('bash -c', 0.3, function(_, stdout)
+    
+    update_vol()
 end)
 
 return wibox.widget {
     wibox.widget{
         volume_icon,
-        -- volume,
-        fg = beautiful.accent.hue_100,
+        fg = beautiful.accent.hue_300,
         widget = wibox.container.background
     },
     volume_widget,
