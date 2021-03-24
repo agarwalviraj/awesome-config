@@ -16,9 +16,8 @@ local volume
 
 function update_volume()
     awful.spawn.easy_async_with_shell("bash -c 'pactl list sinks | awk \'$1==\"Volume:\" {print $5} \''", function(stdout)
-        -- volume.text = string.match(stdout, '(%d?%d?%d)%%')
+        volume= string.match(stdout, '(%d?%d?%d)%%')
         -- volume_widget.text=stdout,
-        volume="80%",
         awful.spawn.easy_async_with_shell("bash -c 'pactl list sinks | awk \'/Mute/ {print $2}\''", function(muted)
             muted = string.gsub(muted, "%s+", "")
             if muted == 'muted:no' and (volume > '50' or volume == '100') then
