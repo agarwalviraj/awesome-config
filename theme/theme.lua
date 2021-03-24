@@ -50,8 +50,8 @@ local awesome_overrides = function(theme)
     -- Client
     theme.gaps = dpi(7)
     theme.border_width = dpi(1)
-    theme.border_focus = theme.accent.hue_600
-    theme.border_normal = theme.primary.hue_100
+    theme.border_focus = theme.accent.hue_200
+    theme.border_normal = theme.primary.hue_200
     theme.gap_single_client = true
     theme.bg_normal = theme.primary.hue_100
 end

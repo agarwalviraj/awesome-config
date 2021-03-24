@@ -11,11 +11,13 @@ local table = awful.util.table or gears.table
 
 local separator = wibox.container.margin(wibox.widget {
     orientation = 'vertical',
-    forced_width = dpi(7),
-    forced_heigth=dpi(40),
-    opacity = 0.8,
+    forced_width = dpi(3),
+    opacity = 0.2,
+    thickness=17,
+    orientation="horizontal",
+    margin=dpi(5),
     widget = wibox.widget.separator
-}, dpi(0), dpi(0), dpi(4), dpi(4))
+}, dpi(7), dpi(7), dpi(0), dpi(0))
 
 local TopBar = function(s, offset)
 

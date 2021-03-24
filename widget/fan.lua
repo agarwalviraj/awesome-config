@@ -9,7 +9,7 @@ memory.font = beautiful.widget_font
 
 watch('bash -c "sensors | grep fan"', 1, function(_, stdout)
 
-    memory.text =string.sub(stdout, 14)
+    memory.text =string.sub(stdout, 14, 17)
     collectgarbage('collect')
 end)
 

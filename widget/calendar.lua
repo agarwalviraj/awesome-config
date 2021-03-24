@@ -4,6 +4,7 @@ local beautiful = require('beautiful')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local month_calendar = awful.widget.calendar_popup.month({
+    font=beautiful.widget_font,
     start_sunday = true,
     style_month = {
         border_width = dpi(0),
@@ -27,5 +28,4 @@ local month_calendar = awful.widget.calendar_popup.month({
         bg_color = beautiful.primary.hue_100
     }
 })
-
 return month_calendar

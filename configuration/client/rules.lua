@@ -22,10 +22,14 @@ awful.rules.rules = {{
         maximized_horizontal = false,
         maximized_vertical = false
     }
-}, {
+},
+{
     rule_any = {
         type = {'dialog'},
-        class = {'Wicd-client.py', 'calendar.google.com'}
+        class = {'Wicd-client.py', 'calendar.google.com', "Picture in picture"},
+        instance ={"Picture in picture"},
+        name={"Picture in picture"},
+        role={"pop-up"},
     },
     properties = {
         placement = awful.placement.centered,
