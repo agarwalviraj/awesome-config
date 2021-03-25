@@ -1,0 +1,2 @@
+local workspaces ={'  ' ,'  ' , '  ' , '  ', ' 󰙯 ' ,'  '}
+return workspaces

@@ -15,6 +15,7 @@ require('module.notifications')
 require('module.auto-start')
 require('module.decorate-client')
 require('module.splash-terminal')
+require('widget.dashboard')
 
 -- Setup all configurations
 require('configuration.client')

@@ -45,7 +45,7 @@ local TopBar = function(s, offset)
     local systray = wibox.widget.systray(wibox.widget)
     systray:set_horizontal(true)
     systray:set_base_size(dpi(25))
-    wibox.widget.systray:set_reverse (true)
+    wibox.widget.systray:set_reverse (false)
     
 
     -- SYSTEM DETAILS
@@ -149,6 +149,7 @@ local TopBar = function(s, offset)
         ontop = false,
         screen = s,
         height = dpi(30),
+        opacity=0.8,
         width = s.geometry.width,
         x = s.geometry.x,
         y = s.geometry.y,
@@ -163,6 +164,7 @@ local TopBar = function(s, offset)
 
     panel:setup{
         layout = wibox.layout.align.horizontal,
+        --dashboard can be added
         TagList(s),
         nil,
         system_details,

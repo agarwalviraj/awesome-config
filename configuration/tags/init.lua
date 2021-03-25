@@ -3,19 +3,15 @@ local beautiful = require('beautiful')
 local gears = require('gears')
 local apps = require('configuration.apps')
 local dpi = require('beautiful').xresources.apply_dpi
+local workspaces = require('configuration.tags.workspaces')
 
 local tags = {
-    {text = '  ', type = 'web', defaultApp = apps.default.browser, screen = 1},
-    {text = '  ', type = 'dev', defaultApp = apps.default.editor, screen = 1},
-    {
-        text = '  ',
-        type = 'term',
-        defaultApp = apps.default.terminal,
-        screen = 1
-    },
-    {text = '  ', type = 'file', defaultApp = apps.default.files, screen = 1},
-    {text = ' 󰙯 ', type = 'chat', defaultApp = apps.default.social, screen = 1},
-    {text = '  ', type = 'misc', defaultApp = apps.default.rofi, screen = 1}
+    {text = workspaces[1], type = 'web', defaultApp = apps.default.browser, screen = 1},
+    {text = workspaces[2], type = 'dev', defaultApp = apps.default.editor, screen = 1},
+    {text = workspaces[3], type = 'term',defaultApp = apps.default.terminal,screen = 1},
+    {text = workspaces[4], type = 'file', defaultApp = apps.default.files, screen = 1},
+    {text = workspaces[5], type = 'chat', defaultApp = apps.default.social, screen = 1},
+    {text = workspaces[6], type = 'misc', defaultApp = apps.default.rofi, screen = 1}
 }
 
 awful.layout.layouts = {

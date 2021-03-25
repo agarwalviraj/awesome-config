@@ -13,9 +13,9 @@ local awesome_overrides = function(theme)
     theme.dir = os.getenv('HOME') .. '/.config/awesome/theme'
 
     theme.icons = theme.dir .. '/icons/'
-    theme.font = 'SauceCodePro Nerd Font 17'         -- Glyphs don't work properly with this (#442)
-    theme.widget_font = 'HelveticaNeueCyr 12'         -- Glyphs don't work properly with this (#442)
-    theme.icon_font = 'DejaVuSansMono Nerd Font 13'          -- Fira mono patched version
+    theme.font = 'Sauce_Code_Pro_Black_Nerd_Font_Complete 17'         -- Glyphs don't work properly with this (#442)
+    theme.widget_font = 'HelveticaNeueCyr-Medium 12'         -- Glyphs don't work properly with this (#442)
+    theme.icon_font = 'DejaVu_Sans_Mono_Oblique_Nerd_Font_Complete_Mono 13'          -- Fira mono patched version
 
     -- Layout icons
     theme.layout_txt_tile                           = "|舘|"

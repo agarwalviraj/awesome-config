@@ -2,6 +2,7 @@ local awful = require('awful')
 local gears = require('gears')
 local client_keys = require('configuration.client.keys')
 local client_buttons = require('configuration.client.buttons')
+local workspaces = require('configuration.tags.workspaces')
 
 -- Rules
 awful.rules.rules = {{
@@ -54,7 +55,7 @@ awful.rules.rules = {{
         skip_decoration = true,
         placement = awful.placement.centered
     }
-}, {
+},{
     rule_any = {
         type = {'utility'}
     },
@@ -74,5 +75,33 @@ awful.rules.rules = {{
         above = true,
         skip_decoration = true,
         placement = awful.placement.centered
+    }
+},{
+    rule = {
+        instance = "code"
+    },
+    properties = {
+         tag = workspaces[1],
+    }
+}, {
+    rule = {
+        instance = "brave-browser"
+    },
+    properties = {
+         tag = workspaces[2],
+    }
+},{
+    rule = {
+        instance = "Alacritty"
+    },
+    properties = {
+         tag = workspaces[3],
+    }
+},  {
+    rule = {
+        instance = "thunar"
+    },
+    properties = {
+         tag = workspaces[4],
     }
 }}
