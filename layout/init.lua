@@ -1,5 +1,6 @@
 local awful = require('awful')
 local top_bar = require('layout.top-bar')
+local left_panel = require('layout.left-panel')
 local bottom_bar = require('layout.bottom-bar')
 
 local key_grabber
@@ -8,9 +9,11 @@ local key_grabber
 awful.screen.connect_for_each_screen(function(s)
     if s.index == 1 then
         s.top_bar = top_bar(s, true)
+        -- s.left_panel = left_panel(s, true)
         -- s.bottom_bar = bottom_bar(s, true)
     else
         s.top_bar = top_bar(s, false)
+        -- s.left_panel = top_bar(s, false)
         -- s.bottom_bar = bottom_bar(s, false)
     end
 end)
@@ -21,6 +24,7 @@ function updateBarsVisibility()
         if s.selected_tag then
             local fullscreen = s.selected_tag.fullscreenMode
             s.top_bar.visible = not fullscreen
+            s.left_panel.visible = not fullscreen
             -- s.bottom_bar.visible = not fullscreen
         end
     end

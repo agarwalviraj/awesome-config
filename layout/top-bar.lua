@@ -8,6 +8,7 @@ local gears = require('gears')
 local dpi = require('beautiful').xresources.apply_dpi
 local theme = require "theme"
 local table = awful.util.table or gears.table
+local clickable_container = require('widget.material.clickable-container')
 
 local separator = wibox.container.margin(wibox.widget {
     orientation = 'vertical',
@@ -46,12 +47,19 @@ local TopBar = function(s, offset)
     systray:set_horizontal(true)
     systray:set_base_size(dpi(25))
     wibox.widget.systray:set_reverse (false)
+
+
+    
+    -- awful.placement.maximize_horizontally(w)
+
+    
     
 
     -- SYSTEM DETAILS
     -- ==============
     local volume_widget = require('widget.volume')
     local battery_widget = require('widget.battery')
+    -- local custom_widget = require('widget.dashboard')
     local clock_widget = require('widget.clock')
     local mem_widget = require('widget.memory')
     local fan_widget = require('widget.fan')
@@ -59,6 +67,7 @@ local TopBar = function(s, offset)
     local temprature_widget = require('widget.temprature')
     local storage_widget = require('widget.storage')
     local system_details = wibox.widget {
+            -- custom_widget,
             systray,
             separator,
             battery_widget,
@@ -165,8 +174,10 @@ local TopBar = function(s, offset)
     panel:setup{
         layout = wibox.layout.align.horizontal,
         --dashboard can be added
+        
         TagList(s),
         nil,
+        -- left_panel(s),
         system_details,
     }
 

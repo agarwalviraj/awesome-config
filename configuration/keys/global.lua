@@ -16,7 +16,11 @@ awful.key({modkey}, 'h', hotkeys_popup.show_help, {
 }), awful.key({modkey}, 'F1', hotkeys_popup.show_help, {
     description = 'show help',
     group = 'awesome'
-}), -- Tag browsing
+}),
+awful.key({modkey}, 'd', function() _G.dash_toggle() end,
+          {description = 'toggle main menu', group = 'awesome'}),
+
+ -- Tag browsing
 awful.key({modkey}, 'Left', function()
     awful.tag.viewprev()
     _G._splash_to_current_tag()
@@ -76,6 +80,18 @@ end, {
     end
 end, {
     description = 'minimize window in focus / unminimize all',
+    group = 'client'
+}),awful.key({modkey}, 'x', function()
+    focus = not _G.client.focus
+    if not focus then
+        _G.client.focus.minimized = false
+    else
+        for _, c in ipairs(mouse.screen.selected_tag:clients()) do
+            c.minimized = false
+        end
+    end
+end, {
+    description = 'maximize window in focus / unminimize all',
     group = 'client'
 }), awful.key({altkey, 'Shift'}, 'Tab', function()
     awful.client.focus.byidx(-1)
@@ -255,52 +271,52 @@ end, {
     description = 'toggle splash terminal height',
     group = 'launcher'
 }), awful.key({}, 'XF86MonBrightnessUp', function()
-    awful.spawn('xbacklight -inc 10')
+    awful.spawn('light -A -5')
 end, {
     description = '+10%',
     group = 'hotkeys'
 }), awful.key({}, 'XF86MonBrightnessDown', function()
-    awful.spawn('xbacklight -dec 10')
+    awful.spawn('light -U 5')
 end, {
     description = '-10%',
     group = 'hotkeys'
 }), -- ALSA volume control
 awful.key({altkey}, 'k', function()
-    awful.spawn.easy_async('amixer -D pulse sset Master 5%+', function()
+    awful.spawn.easy_async('pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ +5%', function()
         _G.update_volume()
     end)
 end, {
     description = 'volume up',
     group = 'hotkeys'
 }), awful.key({}, 'XF86AudioRaiseVolume', function()
-    awful.spawn.easy_async('amixer -D pulse sset Master 5%+', function()
+    awful.spawn.easy_async('pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ +5%', function()
         _G.update_volume()
     end)
 end, {
     description = 'volume up',
     group = 'hotkeys'
 }), awful.key({}, 'XF86AudioLowerVolume', function()
-    awful.spawn.easy_async('amixer -D pulse sset Master 5%-', function()
+    awful.spawn.easy_async('pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ -5%', function()
         _G.update_volume()
     end)
 end, {
     description = 'volume down',
     group = 'hotkeys'
 }), awful.key({altkey}, 'j', function()
-    awful.spawn.easy_async('amixer -D pulse sset Master 5%-', function()
+    awful.spawn.easy_async('pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ -5%', function()
         _G.update_volume()
     end)
 end, {
     description = 'volume down',
     group = 'hotkeys'
 }), awful.key({altkey}, 'm', function()
-    awful.spawn('amixer -D pulse set Master 1+ toggle')
+    awful.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle')
     _G.update_volume()
 end, {
     description = 'toggle mute',
     group = 'hotkeys'
 }), awful.key({}, 'XF86AudioMute', function()
-    awful.spawn('amixer -D pulse set Master 1+ toggle')
+    awful.spawn('pactl set-sink-mute @DEFAULT_SINK@ toggle')
     _G.update_volume()
 end, {
     description = 'toggle mute',

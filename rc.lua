@@ -13,9 +13,10 @@ require('layout')
 -- Init all modules
 require('module.notifications')
 require('module.auto-start')
-require('module.decorate-client')
-require('module.splash-terminal')
-require('widget.dashboard')
+require('module.dashVisible')
+-- require('module.dashVisible')
+-- require('module.decorate-client')
+-- require('module.splash-terminal')
 
 -- Setup all configurations
 require('configuration.client')
@@ -40,6 +41,8 @@ end)
 -- _G.client.connect_signal('mouse::enter', function(c)
 --     c:emit_signal('request::activate', 'mouse_enter', {raise = true})
 -- end)
+
+-- require('layout.module.dashboard')
 
 -- Make the focused window have a glowing border
 _G.client.connect_signal('focus', function(c)

@@ -23,7 +23,6 @@ local month_calendar = awful.widget.calendar_popup.month({
     },
     style_focus = {
         border_width = dpi(0),
-        border_color = beautiful.fg_normal,
         fg_color = beautiful.accent.hue_200,
         bg_color = beautiful.primary.hue_100
     }

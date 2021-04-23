@@ -26,6 +26,7 @@ return {
     -- List of commands to start once on start-up
     run_on_start_up = {
         -- '~/.config/awesome/configuration/awspawn',
+        'sh ~/.config/awesome/scripts/startup.sh'
         -- 'compton',
         -- 'nm-applet --indicator',
         -- 'nitrogen --restore',
